@@ -1,6 +1,6 @@
 .custom-card-title {
     position: absolute;
-    top: -10%;
+    top: -13%;
     left: 0%;
     width: 100%;
     padding: 5px 10px;
@@ -15,6 +15,6 @@
 }
 
 .statText{
-    font-size: 2vh;
+    font-size: 2.5vh;
     margin-bottom: 1vh;
 }
