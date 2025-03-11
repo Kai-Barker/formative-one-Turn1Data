@@ -1,0 +1,39 @@
+.navLinks {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    color: #000000;
+    border: 5px solid #000000;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: background-color 0.3s;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.navLinks:hover {
+    background-color: #000000;
+    color: white;
+}
+
+.buttonIcons {
+    margin-right: 10px;
+    width: 20px; /* Adjust the width as needed */
+}
+
+h6 {
+    margin-bottom: 10px;
+    align-items: start;
+}
+
+.helpBTN{
+    color: #FF1801;
+}
+
+.helpBTN:hover{
+    background-color: #FF1801;
+    color: white;
+}

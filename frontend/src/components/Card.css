@@ -1,0 +1,20 @@
+.custom-card-title {
+    position: absolute;
+    top: -10%;
+    left: 0%;
+    width: 100%;
+    padding: 5px 10px;
+    transform: rotate(1.5deg);
+    transform-origin: left bottom;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FF1801;
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+    font-family: 'Racing Sans One', sans-serif;
+    letter-spacing: 2px;
+}
+
+.statText{
+    font-size: 2vh;
+    margin-bottom: 1vh;
+}
