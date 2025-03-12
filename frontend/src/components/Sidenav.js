@@ -23,7 +23,7 @@ function Sidenav() {
                                         border: '5px solid #FF1801',
                                         borderRadius: '20%',
                                         backgroundColor: '0',
-                                        marginRight: '5%',
+                                        marginRight: '2%',
                                         marginTop: '2%',
                                         zIndex: '1'
                                 }}
@@ -49,7 +49,7 @@ function Sidenav() {
                                         <Link to="/" className="navLinks">
                                                 <img src={homeIcon} className='buttonIcons' />Dashboard
                                         </Link>
-                                        <Link to="/" className="navLinks">
+                                        <Link to="/comparison" className="navLinks">
                                                 <img src={homeIcon} className='buttonIcons' />Comparison
                                         </Link>
                                         <Link to="/" className="navLinks">

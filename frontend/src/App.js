@@ -4,12 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidenav from './components/Sidenav';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
+import FooterComp from './components/Footercomp';
+import Comparison from './components/Comparison';
 
 //Colours: Classic F1 (Red, Black, and White)
 // Primary: #FF1801 (Ferrari Red)
 // Secondary: #0D0D0D (Black)
 // Accent: #FFFFFF (White)
-// Background:#1C1C1C (Dark Gray)
+// Background: #1C1C1C (Dark Gray)
 // Highlight: #FFC300 (Yellow – for key stats or warnings)
 
 function App() {
@@ -19,7 +21,9 @@ function App() {
       <Sidenav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/comparison" element={<Comparison />} />
       </Routes>
+      <FooterComp />
     </div>
     </Router>
   );

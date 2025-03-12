@@ -2,6 +2,7 @@ import React from 'react';
 import HeroSection from './Hero_section';
 import SmallCard from './SmallCard';
 import LargeCard from './Large_card';
+import DataSelectors from './Data_selectors';
 
 const driver = {
     name: 'Lewis Hamilton',
@@ -37,8 +38,10 @@ function Home(){
     return (
         <div style={{ marginLeft: '20%', top:'0px' }}>
             .
-            
             <HeroSection />
+            <div style={{marginRight:'10%', marginTop:'2%'}}>
+            <DataSelectors />
+            </div>
             <div className="d-flex flex-row" style={{ gap: '5vh' }}>
                 <SmallCard driver={driver}/>
                 <LargeCard />
