@@ -2,6 +2,7 @@ import React from 'react';
 import SmallCard from './SmallCard';
 import LargeCard from './Large_card';
 import DataSelectors from './Data_selectors';
+import TimelineCard from './Timeline_card';
 
 const driver = {
     name: 'Lewis Hamilton',
@@ -42,6 +43,9 @@ function Timeline(){
             <div className="d-flex flex-row" style={{ gap: '5vh' }}>
                 <SmallCard driver={driver}/>
                 <LargeCard />
+            </div>
+            <div>
+                <TimelineCard />
             </div>
         </div>
     )

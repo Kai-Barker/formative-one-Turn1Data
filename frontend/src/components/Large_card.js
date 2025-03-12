@@ -3,6 +3,55 @@ import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.css'; // Import the CSS file
 import bgTexture from '../images/MetalTexture.jpeg';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+  } from 'chart.js';
+  import { Bar } from 'react-chartjs-2';
+  
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+  
+  export const options = {
+    indexAxis: 'y',
+    maintainAspectRatio: false,
+    elements: {
+      bar: {
+        borderWidth: 2,
+      },
+    },
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'right',
+      },
+    },
+  };
+  
+  const labels = ['Wins', 'Poles', 'WDC Wins', 'Podiums'];
+  
+  export const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Lewis Hamilton',
+        data: [105, 104, 7, 202],
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      }
+    ],
+  };
 
 function LargeCard({driver}){
     return (
@@ -15,8 +64,12 @@ function LargeCard({driver}){
                 </Card.Title>
                 <Card.Title id='lastRace' style={{fontSize:'18px', marginTop:'-1vh',textAlign: 'center'}}>
                     Compared against the current world records
+                    
                 </Card.Title>
                 <hr style={{margin: '5px', marginLeft: '-2.3%', padding:'4px', color:'#fff', backgroundColor:'#FF1801', width:'104.5%', opacity:'100'}}/>
+                <div className='d-flex'>
+                    <Bar options={options} data={data} style={{width:'100%', height:'25vh'}}/>
+                </div>
                 </div>
             </Card.Body>
         </Card>
