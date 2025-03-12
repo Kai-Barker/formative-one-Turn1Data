@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import FooterComp from './components/Footercomp';
 import Comparison from './components/Comparison';
+import Timeline from './components/Timeline';
 
 //Colours: Classic F1 (Red, Black, and White)
 // Primary: #FF1801 (Ferrari Red)
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/comparison" element={<Comparison />} />
+        <Route path="/timeline" element={<Timeline />} />
       </Routes>
       <FooterComp />
     </div>

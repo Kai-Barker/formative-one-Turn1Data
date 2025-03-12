@@ -52,7 +52,7 @@ function Sidenav() {
                                         <Link to="/comparison" className="navLinks">
                                                 <img src={homeIcon} className='buttonIcons' />Comparison
                                         </Link>
-                                        <Link to="/" className="navLinks">
+                                        <Link to="/timeline" className="navLinks">
                                                 <img src={homeIcon} className='buttonIcons' />Timeline
                                         </Link>
                                 </Container>
