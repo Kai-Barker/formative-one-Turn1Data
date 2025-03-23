@@ -4,18 +4,7 @@ function Driverconstructor() {
   return (
     <>
       <div className="d-flex gap-3" style={{ fontFamily: "Racing Sans One" }}>
-        <Button
-          style={{
-            color: "white",
-            textDecorationLine: "underline",
-            background: "none",
-            border: "none",
-            fontSize: "28px",
-          }}
-        >
-          Driver
-        </Button>
-        <Button
+        <h1
           style={{
             color: "white",
             background: "none",
@@ -23,8 +12,8 @@ function Driverconstructor() {
             fontSize: "28px",
           }}
         >
-          Constructor
-        </Button>
+          Individual Driver Data
+        </h1>
       </div>
     </>
   );

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SmallCard from "./SmallCard";
 import LargeCard from "./Large_card";
 import DataSelectors from "./Data_selectors";
 import TimelineCard from "./Timeline_card";
+import { getDriverData } from './Api_two';
+
 
 const driver = {
   name: "Lewis Hamilton",
@@ -34,6 +36,15 @@ const driver = {
 };
 
 function Timeline() {
+  const [DriverData, setDriverData] = useState(null);
+    const [newDriverID, setNewDriverID] = useState(Math.floor(Math.random() * 864)); //temp number until changed
+    useEffect(() => {
+      const fetchDriverData = async () => {
+        const data = await getDriverData(newDriverID); // Await the async function call
+        setDriverData(data); // Set the fetched data to the state
+      };
+      fetchDriverData();
+    }, []);
   return (
     <div style={{ marginLeft: "20%", top: "0px" }}>
       .
@@ -41,8 +52,8 @@ function Timeline() {
         <DataSelectors />
       </div>
       <div className="d-flex flex-row" style={{ gap: "5vh" }}>
-        <SmallCard driver={driver} />
-        <LargeCard />
+        <SmallCard driver={DriverData} />
+        <LargeCard driver={DriverData}/>
       </div>
       <div>
         <TimelineCard />

@@ -41,14 +41,14 @@ import {
 
 function LargeCard({driver}){
   console.log("Driver received in LargeCard:", driver);
-  const labels = ['Wins', 'Poles', 'WDC Wins'];
+  const labels = ['Races', 'Seasons', 'Constructors'];
 
   const data = {
     labels,
     datasets: [
       {
         label: driver.name,
-        data: [driver.wins, driver.polePositions, 0],
+        data: [driver.numRaces, driver.numSeasons, driver.constructors],
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
