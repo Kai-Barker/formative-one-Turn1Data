@@ -32,13 +32,13 @@ function SmallCard({ driver }) {
         <div style={{ textAlign: "left" }}>
           <Card.Text
             id="competeStatus"
-            style={{ fontSize: "small", marginBottom: "0" }}
+            style={{ fontSize: "small", marginBottom: "0", height:'10px' }}
           >
-            {driver.isCompeting ? "Is Currently Competing" : "Not Competing"}
+            
           </Card.Text>
           <Card.Text
             id="lastRace"
-            style={{ fontSize: "small", marginBottom: "0" }}
+            style={{ fontSize: "small", marginBottom: "10px" }}
           >
             {"Last Race: " + driver.lastRace}
           </Card.Text>
@@ -51,6 +51,7 @@ function SmallCard({ driver }) {
               backgroundColor: "#FF1801",
               width: "112.5%",
               opacity: "100",
+              marginBottom:"20px"
             }}
           />
           <Card.Text className="statText">

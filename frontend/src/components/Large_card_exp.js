@@ -60,10 +60,10 @@ function LargeCard({driver}){
             <Card.Body>
                 <div style={{fontFamily:'Racing Sans One'}}>
                 <Card.Title id='competeStatus' style={{fontSize:'24px', marginTop:'-2vh',textAlign: 'center'}}>
-                    Drivers Performance
+                    Drivers Experience
                 </Card.Title>
                 <Card.Title id='lastRace' style={{fontSize:'18px', marginTop:'-1vh',textAlign: 'center'}}>
-                    Compared against the current world records
+                    The number of Races, Seasons, and Constructors raced in
                     
                 </Card.Title>
                 <hr style={{margin: '5px', marginLeft: '-2.3%', padding:'4px', color:'#fff', backgroundColor:'#FF1801', width:'104.5%', opacity:'100'}}/>

@@ -63,7 +63,7 @@ function LargeCard({driver}){
                     Drivers Performance
                 </Card.Title>
                 <Card.Title id='lastRace' style={{fontSize:'18px', marginTop:'-1vh',textAlign: 'center'}}>
-                    Compared against the current world records
+                    The Driver's Wins, Pole Positions, and World Drivers Championship Wins
                     
                 </Card.Title>
                 <hr style={{margin: '5px', marginLeft: '-2.3%', padding:'4px', color:'#fff', backgroundColor:'#FF1801', width:'104.5%', opacity:'100'}}/>

@@ -6,7 +6,7 @@ import LargeCardExp from "./Large_card_exp";
 import DataSelectors from "./Data_selectors";
 import axios from "axios";
 import { getDriverData } from './Api_two';
-
+import PieCard from './Pie_card_home';
 const DriverData = {
   name: "Lewis Hamilton",
   isCompeting: true,
@@ -58,7 +58,7 @@ function Home() {
       </div>
       <div className="d-flex flex-row" style={{ gap: "5vh" }}>
         <LargeCardExp driver={DriverData}/>
-        <SmallCard driver={DriverData} />
+        <PieCard driver={DriverData} numData={0} />
       </div>
     </div>
   );

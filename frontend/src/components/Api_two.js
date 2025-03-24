@@ -11,6 +11,7 @@ export const getDriverData = async (driverID = null) => {
   let driver = {};
   let constructors = 0; // total num constructors raced for
   let driverData = null;
+  let lastRace="";
   function waitTimeBetweenRequests(ms) {
     //This api has a limit of 4 requests per second
     return new Promise((resolve) => setTimeout(resolve, ms=250)); //default to 250, but one field needs around a second so i added this parameter ms
@@ -108,8 +109,14 @@ export const getDriverData = async (driverID = null) => {
         wins = winsRes.data.MRData.total;
         poles = polesRes.data.MRData.total;
         races = racesRes.data.MRData.total;
+        
         driverSeasons = seasonsRes.data.MRData.SeasonTable.Seasons;
         console.log(driverSeasons);
+        await waitTimeBetweenRequests();
+        const lastRaceRes = await axios.get(
+          `https://api.jolpi.ca/ergast/f1/${driverSeasons[driverSeasons.length-1].season}/drivers/${driverId}/races/`
+        );
+        lastRace = lastRaceRes.data.MRData.RaceTable.season +" "+ lastRaceRes.data.MRData.RaceTable.Races[lastRaceRes.data.MRData.RaceTable.Races.length-1].raceName;
         
         seasons = seasonsRes.data.MRData.total;
         constructors = constructorsRes.data.MRData.total;
@@ -151,7 +158,7 @@ export const getDriverData = async (driverID = null) => {
       championshipWins: -1, //temp for now
       podiums: -1,
       isCompeting: false, //temp
-      lastRace: "2024 Abu Dhabi Grand Prix", //temp
+      lastRace: lastRace, //temp
       numRaces: races,
       numSeasons: seasons,
       winrate: Math.floor((wins / races) * 100),
