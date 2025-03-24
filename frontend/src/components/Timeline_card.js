@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Card.css";
 import bgTexture from "../images/MetalTexture.jpeg";
 import { faker } from "@faker-js/faker";
 import Form from "react-bootstrap/Form";
+import { getDriverDataInSeason } from "./Api_two";
 
 import {
   Chart as ChartJS,
@@ -28,36 +29,61 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
+function TimelineCard({ driver, seasons }) {
+  console.log(seasons);
+  const [seasonSelected, setSeasonSelected] = useState(seasons[seasons.length - 1]);
+  const [dataInSeason, setDataInSeason] = useState([]); //here is the issue
+  useEffect(() => {
+    const fetchDriverData = async () => {
+      const data = await getDriverDataInSeason(seasonSelected, driver.id); // Await the async function call
+      setDataInSeason(data); // Set the fetched data to the state
+      console.log(dataInSeason);
+      
+    };
+    fetchDriverData();
+  }, [seasonSelected]);
+  useEffect(() => {
+    console.log("Updated Data in Season:", dataInSeason);
+  }, [dataInSeason]);  // This runs when dataInSeason changes
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: `Drivers positions over season ${seasonSelected}`,
+      },
     },
-    title: {
-      display: true,
-      text: "Drivers positions over season 2024",
-    },
-  },
-};
-
-const labels = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Lewis Hamilton",
-      data: labels.map(() => faker.number.int({ min: -20, max: -1 })),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-  ],
-};
-
-function TimelineCard({ driver }) {
+    scales: {
+      y: {
+        beginAtZero:false,
+        suggestedMin: 1,
+        suggestedMax: 20,
+        reverse: true,
+        ticks: {
+          stepSize:1
+        }
+      }
+    }
+  };
+  
+  const labels = dataInSeason?.Races?.map((_, index) => index + 1) || [];
+  
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: dataInSeason.driverId?.toUpperCase(),
+        data: dataInSeason?.Races?.map((race) => 
+          parseInt(race.Results[0].position) || 0 // Get the position from the first result of each race
+        ) || [],
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
   return (
     <Card
       style={{
@@ -95,26 +121,16 @@ function TimelineCard({ driver }) {
             }}
           />
         </div>
-        <div className="d-flex align-items-center justify-content-center gap-3">
-          <div style={{ marginTop: "1%" }}>
-            <Form>
-              {["checkbox"].map((type) => (
-                <div key={`default-${type}`} className="mb-3">
-                  <Form.Check // prettier-ignore
-                    type={type}
-                    id={`default-${type}`}
-                    label={"Career"}
-                  />
-                </div>
-              ))}
-            </Form>
-          </div>
+        <div className="d-flex align-items-center justify-content-center">
           <div>
-            <Form.Select aria-label="Default select example">
+            <Form.Select aria-label="Default select example" onChange={(season)=> setSeasonSelected(season.target.value)}>
               <option>Season</option>
-              <option value="1">2024</option>
-              <option value="2">2023</option>
-              <option value="3">2022</option>
+              {/* Create dropdowns based on the driver selected's seasons raced */}
+              {seasons.map((season, index) => (
+                <option key={index} value={season}>
+                  {season}
+                </option>
+              ))}
             </Form.Select>
           </div>
         </div>

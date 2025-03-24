@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+let driverSeasons;
 
 export const getDriverData = async (driverID = null) => {
   let wins = 0; // race finish position 1 , 1 api check
@@ -73,32 +74,43 @@ export const getDriverData = async (driverID = null) => {
     }
     const fetchStats = async (driverId) => {
       try {
-        await waitTimeBetweenRequests(750)
-        const [winsRes, polesRes] = await Promise.all([
-          axios.get(
-            `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/results/1`
-          ),
-          axios.get(
-            `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/qualifying/1`
-          )
-        ]);
-
-        await waitTimeBetweenRequests(1000);
-
-        const [racesRes, seasonsRes, constructorsRes] = await Promise.all([
-          axios.get(
-            `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/races/`
-          ),
-          axios.get(
-            `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/seasons/`
-          ),
-          axios.get(
-            `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/constructors/`
-          )
-        ]);
+        await waitTimeBetweenRequests(300); // Ensure delay before first request
+        
+        // Fetch Wins
+        const winsRes = await axios.get(
+          `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/results/1`
+        );
+        await waitTimeBetweenRequests(300); // Delay before next request
+          
+        // Fetch Pole Positions
+        const polesRes = await axios.get(
+          `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/qualifying/1`
+        );
+        await waitTimeBetweenRequests(300);
+          
+        // Fetch Total Races
+        const racesRes = await axios.get(
+          `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/races/`
+        );
+        await waitTimeBetweenRequests(300);
+          
+        // Fetch Seasons
+        const seasonsRes = await axios.get(
+          `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/seasons/`
+        );
+        await waitTimeBetweenRequests(300);
+          
+        // Fetch Constructors
+        const constructorsRes = await axios.get(
+          `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/constructors/`
+        );
+        // Assigning values after all requests are done
         wins = winsRes.data.MRData.total;
         poles = polesRes.data.MRData.total;
         races = racesRes.data.MRData.total;
+        driverSeasons = seasonsRes.data.MRData.SeasonTable.Seasons;
+        console.log(driverSeasons);
+        
         seasons = seasonsRes.data.MRData.total;
         constructors = constructorsRes.data.MRData.total;
       } catch (error) {
@@ -109,6 +121,8 @@ export const getDriverData = async (driverID = null) => {
     await fetchDriverData(driverID);
     await waitTimeBetweenRequests();
     await fetchStats(driverID);
+    await waitTimeBetweenRequests();
+    
 
     //dummy data for testing
 
@@ -128,6 +142,7 @@ export const getDriverData = async (driverID = null) => {
     //   constructors: 1,
     // };
     const driverDataToReturn = {
+      id: driverID,
       name: driver.givenName + " " + driver.familyName,
       nationality: driver.nationality,
       wins: wins,
@@ -151,3 +166,20 @@ export const getDriverData = async (driverID = null) => {
     console.log("error fetching data from API" + error);
   }
 };
+
+export const getDriverSeasons = () => {
+  if (!driverSeasons || !Array.isArray(driverSeasons)) {
+    console.log("Driver seasons not loaded yet.");
+    return [];
+  }
+
+  return driverSeasons.map((driverSeasons) => driverSeasons.season);
+};
+
+export const getDriverDataInSeason = async (seasonYear = null, driverId) => {
+  let SeasonData=await axios.get(`https://api.jolpi.ca/ergast/f1/${seasonYear}/drivers/${driverId}/results`);
+  SeasonData=SeasonData.data.MRData.RaceTable;
+  console.log(SeasonData);
+  
+  return SeasonData;
+}

@@ -35,7 +35,7 @@ export const getDriverData = async (driverID = null) => {
 
         while (allDriversArr.length < totalDrivers) {
           offset += limit;
-          waitTimeBetweenRequests();
+          await waitTimeBetweenRequests();
           const nextResponse = await axios.get(
             "https://api.jolpi.ca/ergast/f1/drivers/",
             {
@@ -46,7 +46,7 @@ export const getDriverData = async (driverID = null) => {
             nextResponse.data.MRData.DriverTable.Drivers
           );
         }
-
+        console.log(allDriversArr);
         allDrivers = allDriversArr;
       } catch (error) {
         console.error("Error fetching data:");
@@ -55,9 +55,11 @@ export const getDriverData = async (driverID = null) => {
     await fetchDrivers();
 
     //picks a random driver if no driver id is assigned
-    if (!driverID) {
-      let driverIndex = Math.floor(Math.random() * allDrivers.length);
-      driverID = allDrivers[driverIndex].driverId;
+    if (typeof driverID === "number") {
+        let temp=allDrivers[driverID]
+        driverID=temp.driverId;
+        console.log(driverID+"         random driver id");
+        
     }
     async function fetchDriverData(driverID) {
       try {
@@ -71,6 +73,7 @@ export const getDriverData = async (driverID = null) => {
     }
     const fetchStats = async (driverId) => {
       try {
+        await waitTimeBetweenRequests(750)
         const [winsRes, polesRes] = await Promise.all([
           axios.get(
             `https://api.jolpi.ca/ergast/f1/drivers/${driverId}/results/1`
@@ -80,7 +83,7 @@ export const getDriverData = async (driverID = null) => {
           )
         ]);
 
-        waitTimeBetweenRequests(1500);
+        await waitTimeBetweenRequests(1100);
 
         const [racesRes, seasonsRes, constructorsRes] = await Promise.all([
           axios.get(
@@ -102,9 +105,9 @@ export const getDriverData = async (driverID = null) => {
         console.error("Error fetching stats:", error);
       }
     };
-    waitTimeBetweenRequests();
+    await waitTimeBetweenRequests();
     await fetchDriverData(driverID);
-    waitTimeBetweenRequests(1000);
+    await waitTimeBetweenRequests();
     await fetchStats(driverID);
 
     //dummy data for testing

@@ -4,38 +4,10 @@ import LargeCard from "./Large_card";
 import DataSelectors from "./Data_selectors";
 import TimelineCard from "./Timeline_card";
 import { getDriverData } from './Api_two';
-
-
-const driver = {
-  name: "Lewis Hamilton",
-  isCompeting: true,
-  lastRace: "2024 Abu Dhabi Grand Prix",
-  nationality: "British",
-  wins: 105,
-  polePositions: 104,
-  bestChampPos: 1,
-  championshipWins: 7,
-  podiums: 202,
-  numRaces: 356,
-  numSeasons: 17,
-  winrate: 29.5,
-  currentConstructor: {
-    name: "Scuderia Ferrari",
-    isCompeting: true,
-    lastRace: "2024 Abu Dhabi Grand Prix",
-    nationality: "Italian",
-    wins: 247,
-    polePositions: 253,
-    bestChampPos: 1,
-    championshipWins: 15,
-    podiums: 202,
-    numRaces: 356,
-    numSeasons: 17,
-    numDrivers: 114,
-  },
-};
+import { getDriverSeasons } from "./Api_two";
 
 function Timeline() {
+  const [seasonSelected,setSeasonSelected] = useState(null);
   const [DriverData, setDriverData] = useState(null);
     const [newDriverID, setNewDriverID] = useState(Math.floor(Math.random() * 864)); //temp number until changed
     useEffect(() => {
@@ -45,6 +17,12 @@ function Timeline() {
       };
       fetchDriverData();
     }, []);
+    if (!DriverData) {
+      return <div style={{height:'100vh', marginLeft:'20%', paddingTop:'20%'}}>
+        <h1 style={{fontSize:'100px', color:'white'}}>Loading...</h1>
+        <p style={{fontSize:'64px', color:'white'}}>Sorry for the delay, this should take around 4 seconds</p>
+      </div>;
+    }
   return (
     <div style={{ marginLeft: "20%", top: "0px" }}>
       .
@@ -56,7 +34,7 @@ function Timeline() {
         <LargeCard driver={DriverData}/>
       </div>
       <div>
-        <TimelineCard />
+        <TimelineCard driver={DriverData} seasons={getDriverSeasons()}/>
       </div>
     </div>
   );

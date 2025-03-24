@@ -24,52 +24,53 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  scales: {
-    r: {
-      ticks: {
-        color: "#000", // Tick labels color
-        font: {
-          family: "Racing Sans One, sans-serif", // Change to your desired font
-          size: 12, // Adjust font size
-          weight: "bold", // Make it bold if needed
-        },
-      },
-      grid: {
-        color: "rgba(51, 51, 51, 0.3)",
-      },
-      pointLabels: {
-        font: {
-          family: "Racing Sans One, sans-serif", // Change font of labels around the chart
-          size: 12,
-          color: "#000",
-        },
-      },
-    },
-  },
-};
 
-export const data = {
-  labels: ["Wins", "Poles", "Podiums", "Championships"],
-  datasets: [
-    {
-      label: "Lewis Hamilton",
-      data: [105, 104, 202, 7],
-      backgroundColor: "rgba(255, 99, 132, 0.2)",
-      borderColor: "rgb(255, 71, 111)",
-      borderWidth: 1,
-    },
-    {
-      label: "Max Verstappen",
-      data: [63, 40, 100, 4],
-      backgroundColor: "rgba(122, 255, 104, 0.2)",
-      borderColor: "rgb(117, 255, 53)",
-      borderWidth: 1,
-    },
-  ],
-};
 
 function RadarCard({ driver1, driver2 }) {
+  const options = {
+    scales: {
+      r: {
+        ticks: {
+          color: "#000", // Tick labels color
+          font: {
+            family: "Racing Sans One, sans-serif", // Change to your desired font
+            size: 12, // Adjust font size
+            weight: "bold", // Make it bold if needed
+          },
+        },
+        grid: {
+          color: "rgba(51, 51, 51, 0.3)",
+        },
+        pointLabels: {
+          font: {
+            family: "Racing Sans One, sans-serif", // Change font of labels around the chart
+            size: 12,
+            color: "#000",
+          },
+        },
+      },
+    },
+  };
+  
+  const data = {
+    labels: ["Wins", "Poles", "Championships"],
+    datasets: [
+      {
+        label: driver1.name,
+        data: [driver1.wins, driver1.polePositions, 0],
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgb(255, 71, 111)",
+        borderWidth: 1,
+      },
+      {
+        label: driver2.name,
+        data: [driver2.wins, driver2.polePositions, 0],
+        backgroundColor: "rgba(122, 255, 104, 0.2)",
+        borderColor: "rgb(117, 255, 53)",
+        borderWidth: 1,
+      },
+    ],
+  };
   return (
     <Card
       style={{
