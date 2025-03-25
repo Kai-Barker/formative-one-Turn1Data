@@ -8,26 +8,37 @@ import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const data = {
-  labels: ['% Won', '% Not Won'],
-  datasets: [
-    {
-      label: '(Races won/races entered)*100',
-      data: [29.5, 70.5],
-      backgroundColor: [
-        'rgba(199, 0, 43, 0.4)',
-        'rgba(97, 97, 97, 0.4)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 133, 0.6)',
-        'rgba(0, 0, 0, 0.6)',
-      ],
-      borderWidth: 1,
-    },
-  ],
+function PieCard({driver, numData}){
+  const data = {
+    labels: ['% Won', '% Not Won'],
+    datasets: [
+        {
+            label: '(Races won/races entered)*100',
+            data: [driver.winrate, 100-driver.winrate],
+            backgroundColor: [
+                'rgba(199, 0, 43, 0.4)',
+                'rgba(97, 97, 97, 0.4)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 133, 0.6)',
+                'rgba(0, 0, 0, 0.6)',
+            ],
+            borderWidth: 1,
+        },
+    ],
 };
 
-function PieCard({driver, numData}){
+const options = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top',
+        },
+        tooltip: {
+            enabled: true,
+        },
+    },
+};
     //if the numData is 1, the colour of the graph will be black
     // //graphCol="#FF1801"
      if (numData==1) {

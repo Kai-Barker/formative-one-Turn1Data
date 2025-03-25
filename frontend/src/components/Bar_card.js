@@ -37,41 +37,41 @@ export const options = {
   },
 };
 
-const labels = ["Races", "Seasons"];
 
-export const data = {
+function BarCard({ driver1, driver2 }) {
+  const labels = ["Races", "Seasons"];
+
+  const data = {
   labels: [labels[0]],
   datasets: [
     {
-      label: "L",
-      data: [356],
+      label: driver1.name.charAt(0),
+      data: [driver1.numRaces],
       backgroundColor: "rgba(255, 29, 78, 0.5)",
     },
     {
-      label: "M",
-      data: [209],
+      label: driver2.name.charAt(0),
+      data: [driver2.numRaces],
       backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
   ],
 };
 
-export const data2 = {
+  const data2 = {
   labels: [labels[1]],
   datasets: [
     {
-      label: "L",
-      data: [17],
+      label: driver1.name.charAt(0),
+      data: driver1.numSeasons,
       backgroundColor: "rgba(255, 29, 78, 0.5)",
     },
     {
-      label: "M",
-      data: [9],
+      label: driver2.name.charAt(0),
+      data: driver2.numSeasons,
       backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
   ],
 };
-
-function BarCard({ driver1, driver2 }) {
   if (!driver1 || !driver2) {
     console.log("Driver not found");
     return null;

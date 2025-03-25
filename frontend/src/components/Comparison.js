@@ -89,7 +89,7 @@ function Comparison() {
     };
     fetchDriverData2();
   }, [DriverData1]);
-  if (!DriverData1 && !DriverData2) {
+  if (!DriverData1 || !DriverData2) {
     return <div style={{height:'100vh', marginLeft:'20%', paddingTop:'20%'}}>
       <h1 style={{fontSize:'100px', color:'white'}}>Loading...</h1>
       <p style={{fontSize:'64px', color:'white'}}>Sorry for the delay, this should take around 4 seconds</p>
@@ -113,8 +113,8 @@ function Comparison() {
         <BarCard driver1={DriverData1} driver2={DriverData2} />
       </div>
       <div className="d-flex" style={{ minHeight: "60vh", gap: "5vh" }}>
-        <PieCard driver={driver1} numData={0} />
-        <PieCard driver={driver2} numData={1} />
+        <PieCard driver={DriverData1} numData={0} />
+        <PieCard driver={DriverData2} numData={1} />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 let driverSeasons;
+let allDriversReturn;
 
 export const getDriverData = async (driverID = null) => {
   let wins = 0; // race finish position 1 , 1 api check
@@ -55,7 +56,7 @@ export const getDriverData = async (driverID = null) => {
       }
     }
     await fetchDrivers();
-
+    allDriversReturn=allDrivers;
     //picks a random driver if no driver id is assigned
     if (typeof driverID === "number") {
         let temp=allDrivers[driverID]
@@ -107,17 +108,16 @@ export const getDriverData = async (driverID = null) => {
         );
         // Assigning values after all requests are done
         wins = winsRes.data.MRData.total;
-        poles = polesRes.data.MRData.total;
+        poles = polesRes.data.MRData.total;  
         races = racesRes.data.MRData.total;
         
         driverSeasons = seasonsRes.data.MRData.SeasonTable.Seasons;
         console.log(driverSeasons);
         await waitTimeBetweenRequests();
-        const lastRaceRes = await axios.get(
+        const driverLastRaceRes = await axios.get(
           `https://api.jolpi.ca/ergast/f1/${driverSeasons[driverSeasons.length-1].season}/drivers/${driverId}/races/`
         );
-        lastRace = lastRaceRes.data.MRData.RaceTable.season +" "+ lastRaceRes.data.MRData.RaceTable.Races[lastRaceRes.data.MRData.RaceTable.Races.length-1].raceName;
-        
+        lastRace = driverLastRaceRes.data.MRData.RaceTable.season +" "+ driverLastRaceRes.data.MRData.RaceTable.Races[driverLastRaceRes.data.MRData.RaceTable.Races.length-1].raceName;
         seasons = seasonsRes.data.MRData.total;
         constructors = constructorsRes.data.MRData.total;
       } catch (error) {
@@ -189,4 +189,9 @@ export const getDriverDataInSeason = async (seasonYear = null, driverId) => {
   console.log(SeasonData);
   
   return SeasonData;
+}
+
+export const getAllDrivers = () => {
+  console.log("allDriversReturn:", allDriversReturn);
+  return allDriversReturn;
 }

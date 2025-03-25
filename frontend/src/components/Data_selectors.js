@@ -4,7 +4,7 @@ import Buttons from "./ButtonData";
 import Searchbar from "./Search";
 import { useState, useEffect } from "react";
 
-const DataSelectors = () => {
+const DataSelectors = ({ allDrivers, setNewDriverID }) => {
   //Declaring useState variables for search
   // const [searchTerm, setSearchTerm] = useState("");
 
@@ -19,7 +19,9 @@ const DataSelectors = () => {
   return (
     <div className="d-flex">
       <div className="col-6 d-flex justify-content-start">
-        <Searchbar />
+        {console.log("AllDrivers in data selectors")}
+        {console.log(allDrivers)}
+        <Searchbar allDrivers={allDrivers} setNewDriverID={setNewDriverID}/>
       </div>
       <div className="col-6 d-flex justify-content-end">
         <Buttons />
