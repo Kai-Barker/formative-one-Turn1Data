@@ -57,9 +57,9 @@ function Home() {
     }
     fetchDriverData();
   }, [DriverData]);
-  if (!DriverData || allDrivers.length==0) {
+  if (!DriverData || allDrivers.length===0) {
     return <div style={{height:'100vh', marginLeft:'20%', paddingTop:'20%'}}>
-      <h1 style={{fontSize:'100px', color:'white'}}>Loading...</h1>
+      <h1 style={{fontSize:'100px', color:'white'}}>"Box Box"</h1>
       <p style={{fontSize:'64px', color:'white'}}>Sorry for the delay, this should take around 4 seconds</p>
     </div>;
   }
