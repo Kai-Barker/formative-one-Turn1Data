@@ -29,6 +29,8 @@ function Sidenav() {
           marginTop: "2%",
           zIndex: "1",
         }}
+        href="https://github.com/Kai-Barker/formative-one-Turn1Data/blob/main/README.md"
+        target="_blank"
       >
         ?
       </Button>
