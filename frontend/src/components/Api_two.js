@@ -13,6 +13,8 @@ export const getDriverData = async (driverID = null) => {
   let constructors = 0; // total num constructors raced for
   let driverData = null;
   let lastRace="";
+  let wdcWins = 0;
+  let bestWdcPos =20;
   function waitTimeBetweenRequests(ms) {
     //This api has a limit of 4 requests per second
     return new Promise((resolve) => setTimeout(resolve, ms=250)); //default to 250, but one field needs around a second so i added this parameter ms
@@ -118,6 +120,9 @@ export const getDriverData = async (driverID = null) => {
           `https://api.jolpi.ca/ergast/f1/${driverSeasons[driverSeasons.length-1].season}/drivers/${driverId}/races/`
         );
         lastRace = driverLastRaceRes.data.MRData.RaceTable.season +" "+ driverLastRaceRes.data.MRData.RaceTable.Races[driverLastRaceRes.data.MRData.RaceTable.Races.length-1].raceName;
+        // driverSeasons=seasonsRes.data.MRData.SeasonTable.seasons;
+        console.log(driverSeasons);
+        
         seasons = parseInt(seasonsRes.data.MRData.total);
         constructors = constructorsRes.data.MRData.total;
       } catch (error) {
@@ -129,8 +134,34 @@ export const getDriverData = async (driverID = null) => {
     await waitTimeBetweenRequests();
     await fetchStats(driverID);
     await waitTimeBetweenRequests();
+    console.log("line 137!",driverSeasons);
     
-
+    const fetchChampionships = async (seasons) => {
+      for (let i = 0; i < seasons; i++) {
+        console.log(driverSeasons[i].season);
+        
+        const seasonCompare = await axios.get(`https://api.jolpi.ca/ergast/f1/${driverSeasons[i].season}/driverstandings`)
+        console.log(seasonCompare);
+        
+        if (seasonCompare.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.driverId === driverID) {
+          wdcWins++;
+        }
+        else{ //Check for best pos and update that. If pos is 1 i update that later
+          for (let j = 0; j < seasonCompare.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.length-1; j++) {
+            if (seasonCompare.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[j].Driver.driverId === driverID && j<bestWdcPos) {
+              bestWdcPos=seasonCompare.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[j].position;
+            }
+          }
+        }
+        console.log(bestWdcPos);
+        
+        await waitTimeBetweenRequests();
+      }
+      if (wdcWins>0) {
+        bestWdcPos=1;
+      }
+    }
+    await fetchChampionships(seasons);
     //dummy data for testing
 
     // const driverDataToReturn = {
@@ -154,10 +185,9 @@ export const getDriverData = async (driverID = null) => {
       nationality: driver.nationality,
       wins: wins,
       polePositions: poles,
-      bestChampPos: -1, //temp for now
-      championshipWins: -1, //temp for now
+      bestChampPos: bestWdcPos, //temp for now
+      championshipWins: wdcWins, //temp for now
       podiums: -1,
-      isCompeting: false, //temp
       lastRace: lastRace, //temp
       numRaces: races,
       numSeasons: seasons,

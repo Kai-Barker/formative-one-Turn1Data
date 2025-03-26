@@ -48,7 +48,7 @@ function LargeCard({driver}){
     datasets: [
       {
         label: driver.name,
-        data: [driver.wins, driver.polePositions, 0],
+        data: [driver.wins, driver.polePositions, driver.championshipWins],
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },

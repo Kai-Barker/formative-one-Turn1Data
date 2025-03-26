@@ -57,14 +57,14 @@ function RadarCard({ driver1, driver2 }) {
     datasets: [
       {
         label: driver1.name,
-        data: [driver1.wins, driver1.polePositions, 0],
+        data: [driver1.wins, driver1.polePositions, driver1.championshipWins],
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgb(255, 71, 111)",
         borderWidth: 1,
       },
       {
         label: driver2.name,
-        data: [driver2.wins, driver2.polePositions, 0],
+        data: [driver2.wins, driver2.polePositions, driver2.championshipWins],
         backgroundColor: "rgba(122, 255, 104, 0.2)",
         borderColor: "rgb(117, 255, 53)",
         borderWidth: 1,

@@ -62,10 +62,10 @@ function SmallCard({ driver }) {
             {"Pole Positions: " + driver.polePositions}
           </Card.Text>
           <Card.Text className="statText">
-            {"Best Championship Position: " + driver.bestChampPos}
+            {"WDC Wins: " + driver.championshipWins}
           </Card.Text>
           <Card.Text className="statText">
-            {"Championship Wins: " + driver.championshipWins}
+            {"Best WDC Position: " + driver.bestChampPos}
           </Card.Text>
         </div>
       </Card.Body>

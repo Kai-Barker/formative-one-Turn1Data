@@ -6,7 +6,7 @@
     padding: 5px 10px;
     transform: rotate(1.5deg);
     transform-origin: left bottom;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #FF1801;
     text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
@@ -15,6 +15,6 @@
 }
 
 .statText{
-    font-size: 2.5vh;
+    font-size: vh;
     margin-bottom: 1vh;
 }
