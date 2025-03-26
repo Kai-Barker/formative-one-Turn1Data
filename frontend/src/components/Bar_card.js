@@ -40,6 +40,10 @@ export const options = {
 
 function BarCard({ driver1, driver2 }) {
   const labels = ["Races", "Seasons"];
+  {console.log(driver1)
+  }
+  {console.log(driver2)
+  }
 
   const data = {
   labels: [labels[0]],
@@ -62,12 +66,12 @@ function BarCard({ driver1, driver2 }) {
   datasets: [
     {
       label: driver1.name.charAt(0),
-      data: driver1.numSeasons,
+      data: [driver1.numSeasons], //It seems like it wants an array. sometimes it makes the value a flat 1 so making it an array works
       backgroundColor: "rgba(255, 29, 78, 0.5)",
     },
     {
       label: driver2.name.charAt(0),
-      data: driver2.numSeasons,
+      data: [driver2.numSeasons], //It seems like it wants an array. sometimes it makes the value a flat 1 so making it an array works
       backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
   ],
@@ -93,6 +97,7 @@ function BarCard({ driver1, driver2 }) {
         maxHeight: "85vh",
       }}
     >
+      {console.log(driver1.numSeasons)}
       <Card.Body>
         <div style={{ fontFamily: "Racing Sans One" }}>
           <Card.Title

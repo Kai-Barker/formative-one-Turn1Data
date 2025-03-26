@@ -38,6 +38,7 @@ function Home() {
   // const [newDriverID, setNewDriverID] = useState('max_verstappen');
   useEffect(() => {
     console.log(newDriverID);
+    setDriverData(null);
     const fetchDriverData = async () => {
       const data = await getDriverData(newDriverID); // Await the async function call
       setDriverData(data); // Set the fetched data to the state
@@ -45,7 +46,7 @@ function Home() {
     };
     fetchDriverData();
     
-  }, []);
+  }, [newDriverID]);
   // const allDriverData = await getAllDrivers()
   // setAllDrivers(allDriverData);
   // console.log(allDrivers);
@@ -57,10 +58,10 @@ function Home() {
     }
     fetchDriverData();
   }, [DriverData]);
-  if (!DriverData || allDrivers.length===0) {
+  if (!DriverData || !allDrivers ||allDrivers.length===0) {
     return <div style={{height:'100vh', marginLeft:'20%', paddingTop:'20%'}}>
       <h1 style={{fontSize:'100px', color:'white'}}>"Box Box"</h1>
-      <p style={{fontSize:'64px', color:'white'}}>Sorry for the delay, this should take around 4 seconds</p>
+      <p style={{fontSize:'64px', color:'white'}}>Sorry for the delay, this should take around 8 seconds</p>
     </div>;
   }
 

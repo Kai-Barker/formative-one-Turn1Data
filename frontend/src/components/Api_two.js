@@ -118,7 +118,7 @@ export const getDriverData = async (driverID = null) => {
           `https://api.jolpi.ca/ergast/f1/${driverSeasons[driverSeasons.length-1].season}/drivers/${driverId}/races/`
         );
         lastRace = driverLastRaceRes.data.MRData.RaceTable.season +" "+ driverLastRaceRes.data.MRData.RaceTable.Races[driverLastRaceRes.data.MRData.RaceTable.Races.length-1].raceName;
-        seasons = seasonsRes.data.MRData.total;
+        seasons = parseInt(seasonsRes.data.MRData.total);
         constructors = constructorsRes.data.MRData.total;
       } catch (error) {
         console.error("Error fetching stats:", error);
