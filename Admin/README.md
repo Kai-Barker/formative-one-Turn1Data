@@ -20,12 +20,12 @@ Turn1 Data is a js react web application built using the JolpicaF1 API which is 
 ![Chart.js](https://img.shields.io/badge/-Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
 
 ## Table of contents
-* [Deployment]()
-* [Detailed guide on what the project does]()
+* [Deployment](#deployment)
+* [Detailed guide on what the project does](#the-different-pages)
 * [FAQ](#faq)
-* [Acknowledgements]()
-* [API Reference]()
-* [License]()
+* [Acknowledgements](#acknowledgements)
+* [API Reference](#api-reference)
+* [License](#license)
 
 
 ## Deployment
@@ -65,21 +65,28 @@ And Finally
 
 ## The Different Pages
 #### The Dashboard page 
-Allows you to view information about an individual driver. The information shown includes a text overview, a graph to show the driver's accomplishments, a graph to show their experience, and a pie chart for their winrate
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+Allows you to view information about an individual driver. The information shown includes a text overview, a graph to show the driver's accomplishments, a graph to show their experience, and a pie chart for their winrate.
+
+![App Screenshot](/frontend/src/images/DashboardImage.png)
 
 #### The Comparison page 
 Allows you to view information about two drivers and compare their achivements and experience against eachother. Shown through a text overview, a radar graph, a bar graph, and two pie charts.
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+![App Screenshot](/frontend/src/images/ComparisonSSTop.png)
+
+![App Screenshot](/frontend/src/images/ComparisonImageBot.png)
 
 #### The Timeline page 
-Allows you to view information about an individual driver and a line chart depicting their race results over any season they raced in
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+Allows you to view information about an individual driver and a line chart depicting their race results over any season they raced in.
+![App Screenshot](/frontend/src/images/TimelineImageTop.png)
+
+![App Screenshot](/frontend/src/images/Timeline%20Bottom.png)
 
 
 ## Features
 
 - View statistics related to any formula 1 driver since the very beginning of the sport
+- Search for your favourite drivers to view their statistics
 - View a drivers achievements and experience
 - Compare your favourite drivers against eachother. Including their wins, pole positions, experience and even their grand prix winrates
 - View a drivers performance over a season
@@ -87,6 +94,8 @@ Allows you to view information about an individual driver and a line chart depic
 ## Demo
 
 Here are some videos showing how the application works.
+
+[Whole App Demo link](https://drive.google.com/file/d/12RB3mOLNa-2yqmkvpmaWA6_Tth0_FXqp/view?usp=sharing)
 
 ### Dashboard Page
 
@@ -118,8 +127,10 @@ The search bar present at the top of each screen allows you to search for a driv
 
 ## Acknowledgements
 
+ - [Tsungai Katsuro](https://github.com/TsungaiKats)
  - [Jolpica F1 API](https://github.com/jolpica/jolpica-f1)
  - [Readme.so](https://readme.so/editor)
+
 
 
 ## API Reference
