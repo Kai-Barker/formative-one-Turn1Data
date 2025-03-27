@@ -98,8 +98,11 @@ Here are some videos showing how the application works.
 
 ### Comparison Page
 
+![2025-03-27 10-33-45](https://github.com/user-attachments/assets/a5df0d49-fdaa-4d89-831c-b84428279d76)
 
 ### Timeline Page
+
+![2025-03-27 10-43-37](https://github.com/user-attachments/assets/ef56ba37-a76a-4dc0-9720-fa0e8051dae2)
 
 
 ## FAQ
