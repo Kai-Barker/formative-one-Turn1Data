@@ -91,8 +91,8 @@ Here are some videos showing how the application works.
 ### Dashboard Page
 
 
+![Uploading Dash.gif…]()
 
-https://github.com/user-attachments/assets/1d82454d-8672-43cd-aa4b-21e4ea7cf912
 
 
 ### Comparison Page
