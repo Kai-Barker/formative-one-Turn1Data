@@ -1,0 +1,16 @@
+{
+  "name": "my-react-app-root",
+  "version": "1.0.0",
+  "description": "Root server for Heroku deployment",
+  "main": "server.js",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
