@@ -1,6 +1,7 @@
 {
   "name": "my-react-app-root",
   "version": "1.0.0",
+  "type": "module",
   "description": "Root server for Heroku deployment",
   "main": "server.js",
   "engines": {
