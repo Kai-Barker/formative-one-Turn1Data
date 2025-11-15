@@ -1,6 +1,7 @@
 # formative-one-Turn1Data
 
-![Logo](/frontend/src/images/logo.png)
+
+<img width="1280" height="480" alt="turn1_data_banner" src="https://github.com/user-attachments/assets/1f4cbcb5-71b6-42a2-8be8-81f87092eb34" />
 
 
 # About Turn1 Data
