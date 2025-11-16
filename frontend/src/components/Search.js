@@ -38,13 +38,17 @@ const Searchbar = ({ allDrivers, setNewDriverID }) => {
         onChange={handleSearch}
       />
       {filteredDrivers.length > 0 && (
-        <ul className="position-absolute bg-white list-group mt-1" style={{ width: "100%", zIndex: 10 }}>
+        <ul className="position-absolute list-group list-group-dark mt-1" style={{width: "100%", zIndex: 10, maxHeight: "300px", overflowY: "auto", top: "100%"}}>
           {filteredDrivers.map((driver) => (
             <li
               key={driver.driverId}
               className="list-group-item list-group-item-action"
               onClick={() => handleSelectDriver(driver.driverId)}
-              style={{ cursor: "pointer" }}
+              style={{
+                cursor: "pointer",
+                borderColor: "#FF1801",
+                fontFamily: "'Racing Sans One', sans-serif"
+              }}
             >
               {driver.givenName} {driver.familyName}
             </li>
